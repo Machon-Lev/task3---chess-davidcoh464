@@ -1,6 +1,8 @@
 #pragma once
 #include "Piece.h"
 
+const bool WHITE_GOING_UP = true;
+
 class Pawn : public Piece
 {
 public:

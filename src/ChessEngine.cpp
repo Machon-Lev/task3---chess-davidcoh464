@@ -101,10 +101,10 @@ Response ChessEngine::movePiece(std::string move)
 	if(move.size() != 4)
 		throw std::invalid_argument("The length of the steps is incorrect (should be 4).");
 	ChessPoint src_pos = strToPoint(move.substr(0, 2));
-	if(!_chess_board->currectIndex(src_pos))
+	if(!_chess_board->correctPosition(src_pos))
 		throw std::invalid_argument("The source position is incorrect.");
 	ChessPoint dest_pos = strToPoint(move.substr(2, 2));
-	if (!_chess_board->currectIndex(dest_pos))
+	if (!_chess_board->correctPosition(dest_pos))
 		throw std::invalid_argument("The source position is incorrect.");
 
 	return movePiece(src_pos, dest_pos);

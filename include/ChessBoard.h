@@ -25,9 +25,17 @@ class ChessBoard
      * @param i The index to check.
      * @return True if the index is valid, false otherwise.
      */
-    bool currectIndex(int i) const;
+    bool correctIndex(int i) const;
+    
+    /**
+     * @brief Sets a piece at the specified position on the chessboard.
+     * @param pic The piece to set.
+     * @param new_pos The new position for the piece.
+     */
+    void setPiece(Piece* pic, ChessPoint new_pos);
 
 public:
+    
     /**
      * @brief Constructs a ChessBoard object.
      * @param pieces A vector containing the initial set of pieces to be placed on the board.
@@ -35,11 +43,12 @@ public:
     ChessBoard(std::vector<Piece*> pieces);
 
     /**
-     * @brief Checks if the given index is within the valid range for the chessboard.
+     * @brief Checks if the given position is within the valid range for the chessboard.
      * @param pos The position to check.
-     * @return True if the index is valid, false otherwise.
+     * @return True if the position is valid, false otherwise.
      */
-    bool currectIndex(ChessPoint pos) const;
+    bool correctPosition(ChessPoint pos) const;
+
     /**
      * @brief Checks if it is currently white's turn to move.
      * @return True if it is white's turn, false if it is black's turn.
@@ -66,12 +75,6 @@ public:
      */
     Piece* getPiece(ChessPoint pos) const;
 
-    /**
-     * @brief Sets a piece at the specified position on the chessboard.
-     * @param pic The piece to set.
-     * @param new_pos The new position for the piece.
-     */
-    void setPiece(Piece* pic, ChessPoint new_pos);
 
     /**
      * @brief Moves a piece from the current position to the new position on the chessboard.

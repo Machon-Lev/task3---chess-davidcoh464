@@ -7,17 +7,23 @@ std::vector<ChessPoint> Pawn::allLegalMoves(const ChessBoard& board) const
     std::vector<ChessPoint> moves;
     ChessPoint current_pos = getPosition();
     int direction = isWhite() ? 1 : -1;
+    int starting_point = isWhite() ? 1 : 6;
+
+    if (!WHITE_GOING_UP)
+    {
+        direction = isWhite() ? -1 : 1;
+        starting_point = isWhite() ? 6 : 1;
+    }
 
     // Check the square in front of the pawn
     ChessPoint front_pos(current_pos.x + direction, current_pos.y);
-    if (board.isValidMove(front_pos, isWhite())) 
+    if (board.isValidMove(front_pos, isWhite()))
     {
         moves.push_back(front_pos);
 
         // If the pawn is in its starting position, it can move two squares ahead
         ChessPoint two_squares_front(current_pos.x + 2 * direction, current_pos.y);
-        if (board.isValidMove(two_squares_front, isWhite()) &&
-            ((isWhite() && current_pos.x == 1) || (!isWhite() && current_pos.x == 6))) 
+        if (board.isValidMove(two_squares_front, isWhite()) && (current_pos.x == starting_point))
         {
             moves.push_back(two_squares_front);
         }

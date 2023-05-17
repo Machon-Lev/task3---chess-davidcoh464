@@ -1,26 +1,26 @@
 #include"Piece.h"
 
-bool Piece::isWhite() const
+const bool Piece::isWhite() const
 {
-	return is_white;
+	return _is_white;
 }
 
-bool Piece::isBlack() const
+const bool Piece::isBlack() const
 {
-	return !is_white;
+	return !_is_white;
 }
 
-char Piece::getName() const
+const char Piece::getName() const
 {
-	return name;
+	return _name;
 }
 
 ChessPoint Piece::getPosition() const
 {
-	return pos;
+	return _pos;
 }
 
 void Piece::setPosition(ChessPoint newPos)
 {
-	pos = newPos;
+	_pos = newPos;
 }

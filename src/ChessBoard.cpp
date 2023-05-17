@@ -20,20 +20,20 @@ void ChessBoard::changeTurn()
 	_white_turn = !_white_turn;
 }
 
-bool ChessBoard::currectIndex(int i) const 
+bool ChessBoard::correctIndex(int i) const
 {
 	return (i >= 0 && i < 8);
 }
 
-bool ChessBoard::currectIndex(ChessPoint pos) const
+bool ChessBoard::correctPosition(ChessPoint pos) const
 {
-	return (currectIndex(pos.x) && currectIndex(pos.y));
+	return (correctIndex(pos.x) && correctIndex(pos.y));
 }
 
 
 bool ChessBoard::isValidMove(ChessPoint pos, bool is_white) const
 {
-	if (currectIndex(pos))
+	if (correctPosition(pos))
 	{
 		Piece* p = getPiece(pos);
 		return p == nullptr || p->isWhite() != is_white;
@@ -43,7 +43,7 @@ bool ChessBoard::isValidMove(ChessPoint pos, bool is_white) const
 
 Piece* ChessBoard::getPiece(ChessPoint pos) const
 {
-	if (!currectIndex(pos))
+	if (!correctPosition(pos))
 		return nullptr;
 	return _board[pos.x][pos.y];
 }
@@ -68,7 +68,7 @@ void ChessBoard::setPiece(Piece* p, ChessPoint new_pos)
 
 void ChessBoard::movePiece(ChessPoint current_pos, ChessPoint new_pos) 
 {
-	if (!currectIndex(current_pos) || !currectIndex(new_pos))
+	if (!correctPosition(current_pos) || !correctPosition(new_pos))
 		throw std::invalid_argument("Invalid position.");
 
 	if (current_pos == new_pos)
