@@ -8,9 +8,8 @@
 int main()
 {
 	string board = "RNBQKBNRPPPPPPPP################################pppppppprnbqkbnr"; 
-//	string board = "##########K###############################R#############r#r#####";
+	//string board = "##########K###############################R#############r#r#####";
 	Chess a(board);
-	ChessEngine chess_eng(board);
 	int codeResponse = 0;
 	string res = a.getInput();
 	while (res != "exit")
@@ -34,7 +33,7 @@ int main()
 			cout << "code response >> ";
 			try 
 			{
-				codeResponse = (int)chess_eng.movePiece(res);
+				codeResponse = (int)ChessEngine::getInstance(board).movePiece(res);
 			}
 			catch (const std::invalid_argument& e)
 			{

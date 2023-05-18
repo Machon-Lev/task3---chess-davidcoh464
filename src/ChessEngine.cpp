@@ -110,6 +110,12 @@ Response ChessEngine::movePiece(std::string move)
 	return movePiece(src_pos, dest_pos);
 }
 
+ChessEngine& ChessEngine::getInstance(std::string str_board)
+{
+	static ChessEngine instance(str_board);
+	return instance;
+}
+
 ChessEngine::~ChessEngine()
 {
 	delete _chess_board;

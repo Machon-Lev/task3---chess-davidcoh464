@@ -44,7 +44,6 @@ class ChessEngine
 	 */
 	Response movePiece(ChessPoint src_pos, ChessPoint dest_pos);
 
-public:
 	/**
 	 * @brief Constructor for initializing a ChessEngine object with a string representation of the chess board.
 	 *
@@ -53,7 +52,20 @@ public:
 	 *
 	 * @param str_board The string representation of the chess board.
 	 */
-	ChessEngine(std::string str_board);
+	ChessEngine(std::string str_board = "RNBQKBNRPPPPPPPP################################pppppppprnbqkbnr");
+
+	/**
+	 * @brief Destructor for the ChessEngine object.
+	 *
+	 * The destructor releases the memory occupied by the ChessBoard object.
+	 */
+	~ChessEngine();
+
+
+	// Delete the copy constructor and assignment operator
+	ChessEngine(const ChessEngine&) = delete;
+	ChessEngine& operator=(const ChessEngine&) = delete;
+public:
 
 	/**
 	 * @brief Moves a chess piece based on the given move string.
@@ -67,9 +79,13 @@ public:
 	Response movePiece(std::string move);
 
 	/**
-	 * @brief Destructor for the ChessEngine object.
+	 * @brief Gets the instance of the ChessEngine class.
 	 *
-	 * The destructor releases the memory occupied by the ChessBoard object.
+	 * This function returns the singleton instance of the ChessEngine class.
+	 * If the instance does not exist, it creates a new instance with the given string representation of the chess board.
+	 *
+	 * @param str_board The string representation of the chess board.
+	 * @return The singleton instance of the ChessEngine class.
 	 */
-	~ChessEngine();
+	static ChessEngine& getInstance(std::string str_board);
 };
