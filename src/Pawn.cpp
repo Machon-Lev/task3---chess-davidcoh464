@@ -17,13 +17,14 @@ std::vector<ChessPoint> Pawn::allLegalMoves(const ChessBoard& board) const
 
     // Check the square in front of the pawn
     ChessPoint front_pos(current_pos.x + direction, current_pos.y);
-    if (board.isValidMove(front_pos, isWhite()))
+    if (board.isValidMove(front_pos, isWhite()) && !board.getPiece(front_pos))
     {
         moves.push_back(front_pos);
 
         // If the pawn is in its starting position, it can move two squares ahead
         ChessPoint two_squares_front(current_pos.x + 2 * direction, current_pos.y);
-        if (board.isValidMove(two_squares_front, isWhite()) && (current_pos.x == starting_point))
+        if (board.isValidMove(two_squares_front, isWhite()) && !board.getPiece(two_squares_front) &&
+            (current_pos.x == starting_point))
         {
             moves.push_back(two_squares_front);
         }
