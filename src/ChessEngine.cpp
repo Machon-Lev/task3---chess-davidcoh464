@@ -1,14 +1,14 @@
 #include "ChessEngine.h"
 
 
-char ChessEngine::chartolower(const char in) const
+char ChessEngine::chartolower(const char& in) const
 {
 	if (in <= 'Z' && in >= 'A')
 		return in - ('Z' - 'z');
 	return in;
 }
 
-ChessPoint ChessEngine::strToPoint(const std::string str_pos) const
+ChessPoint ChessEngine::strToPoint(const std::string& str_pos) const
 {
 	int i = chartolower(str_pos[0]) - 'a';
 	int j = str_pos[1] - '1';
@@ -17,7 +17,7 @@ ChessPoint ChessEngine::strToPoint(const std::string str_pos) const
 }
 
 
-ChessEngine::ChessEngine(std::string str_board) : _chess_board(nullptr)
+ChessEngine::ChessEngine(const std::string& str_board) : _chess_board(nullptr)
 {
 	std::vector<Piece*> all_piece;
 	for (int i = 0; i < str_board.size(); ++i)
@@ -59,7 +59,7 @@ ChessEngine::ChessEngine(std::string str_board) : _chess_board(nullptr)
 }
 
 
-Response ChessEngine::movePiece(ChessPoint src_pos, ChessPoint dest_pos)
+Response ChessEngine::movePiece(const ChessPoint& src_pos, const ChessPoint& dest_pos)
 {
 	Piece* source_piece = _chess_board->getPiece(src_pos);
 
@@ -96,7 +96,7 @@ Response ChessEngine::movePiece(ChessPoint src_pos, ChessPoint dest_pos)
 	return Response::LEGAL_MOVEMENT_NEXT_TURN;
 }
 
-Response ChessEngine::movePiece(std::string move)
+Response ChessEngine::movePiece(const std::string& move)
 {
 	if(move.size() != 4)
 		throw std::invalid_argument("The length of the steps is incorrect (should be 4).");
@@ -110,7 +110,7 @@ Response ChessEngine::movePiece(std::string move)
 	return movePiece(src_pos, dest_pos);
 }
 
-ChessEngine& ChessEngine::getInstance(std::string str_board)
+ChessEngine& ChessEngine::getInstance(const std::string& str_board)
 {
 	static ChessEngine instance(str_board);
 	return instance;

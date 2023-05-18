@@ -20,7 +20,7 @@ class ChessEngine
 	 * @param in The character to convert.
 	 * @return The lowercase character.
 	 */
-	char chartolower(const char in) const;
+	char chartolower(const char& in) const;
 
 	/**
 	 * @brief Converts a string position to a ChessPoint object.
@@ -30,7 +30,7 @@ class ChessEngine
 	 * @param str_pos The string position to convert.
 	 * @return The corresponding ChessPoint object.
 	 */
-	ChessPoint strToPoint(const std::string str_pos) const;
+	ChessPoint strToPoint(const std::string& str_pos) const;
 
 	/**
 	 * @brief Moves a chess piece from the source position to the destination position.
@@ -42,7 +42,7 @@ class ChessEngine
 	 * @param dest_pos The destination position of the move.
 	 * @return A Response object indicating the result of the move.
 	 */
-	Response movePiece(ChessPoint src_pos, ChessPoint dest_pos);
+	Response movePiece(const ChessPoint& src_pos, const ChessPoint& dest_pos);
 
 	/**
 	 * @brief Constructor for initializing a ChessEngine object with a string representation of the chess board.
@@ -52,7 +52,7 @@ class ChessEngine
 	 *
 	 * @param str_board The string representation of the chess board.
 	 */
-	ChessEngine(std::string str_board = "RNBQKBNRPPPPPPPP################################pppppppprnbqkbnr");
+	ChessEngine(const std::string& str_board = "RNBQKBNRPPPPPPPP################################pppppppprnbqkbnr");
 
 	/**
 	 * @brief Destructor for the ChessEngine object.
@@ -76,7 +76,7 @@ public:
 	 * @param move The move string in the format "source destination".
 	 * @return A Response object indicating the result of the move.
 	 */
-	Response movePiece(std::string move);
+	Response movePiece(const std::string& move);
 
 	/**
 	 * @brief Gets the instance of the ChessEngine class.
@@ -87,5 +87,5 @@ public:
 	 * @param str_board The string representation of the chess board.
 	 * @return The singleton instance of the ChessEngine class.
 	 */
-	static ChessEngine& getInstance(std::string str_board);
+	static ChessEngine& getInstance(const std::string& str_board);
 };

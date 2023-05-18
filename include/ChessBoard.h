@@ -32,7 +32,7 @@ class ChessBoard
      * @param pic The piece to set.
      * @param new_pos The new position for the piece.
      */
-    void setPiece(Piece* pic, ChessPoint new_pos);
+    void setPiece(Piece* pic, const ChessPoint& new_pos);
 
 public:
     
@@ -47,7 +47,7 @@ public:
      * @param pos The position to check.
      * @return True if the position is valid, false otherwise.
      */
-    bool correctPosition(ChessPoint pos) const;
+    bool correctPosition(const ChessPoint& pos) const;
 
     /**
      * @brief Checks if it is currently white's turn to move.
@@ -61,19 +61,19 @@ public:
     void changeTurn();
 
     /**
-     * @brief Checks if a move from the given position is valid.
+     * @brief Checks if the given player color can move to the given position.
      * @param pos The position to check.
-     * @param is_white Specifies whether the move is made by a white piece.
-     * @return True if the move is valid, false otherwise.
+     * @param is_white The player color.
+     * @return True if the move is valid (position is nullptr or different color), false otherwise.
      */
-    bool isValidMove(ChessPoint pos, bool is_white) const;
+    bool isValidMove(const ChessPoint& pos, bool is_white) const;
 
     /**
      * @brief Gets the piece at the specified position on the chessboard.
      * @param pos The position on the chessboard.
      * @return A pointer to the Piece object at the specified position, or nullptr if there is no piece.
      */
-    Piece* getPiece(ChessPoint pos) const;
+    Piece* getPiece(const ChessPoint& pos) const;
 
 
     /**
@@ -81,7 +81,7 @@ public:
      * @param current_pos The current position of the piece.
      * @param new_pos The new position to move the piece to.
      */
-    void movePiece(ChessPoint current_pos, ChessPoint new_pos);
+    void movePiece(const ChessPoint& current_pos, const ChessPoint& new_pos);
 
     /**
      * @brief Checks if the specified player is in check.
@@ -96,7 +96,7 @@ public:
      * @param new_pos The new position to move the piece to.
      * @return True if the move would result in a check, false otherwise.
      */
-    bool isCheckMove(ChessPoint current_pos, ChessPoint new_pos);
+    bool isCheckMove(const ChessPoint& current_pos, const ChessPoint& new_pos);
 
     /**
      * @brief Destructor for the ChessBoard object.

@@ -25,13 +25,13 @@ bool ChessBoard::correctIndex(int i) const
 	return (i >= 0 && i < 8);
 }
 
-bool ChessBoard::correctPosition(ChessPoint pos) const
+bool ChessBoard::correctPosition(const ChessPoint& pos) const
 {
 	return (correctIndex(pos.x) && correctIndex(pos.y));
 }
 
 
-bool ChessBoard::isValidMove(ChessPoint pos, bool is_white) const
+bool ChessBoard::isValidMove(const ChessPoint& pos, bool is_white) const
 {
 	if (correctPosition(pos))
 	{
@@ -41,14 +41,14 @@ bool ChessBoard::isValidMove(ChessPoint pos, bool is_white) const
 	return false;
 }
 
-Piece* ChessBoard::getPiece(ChessPoint pos) const
+Piece* ChessBoard::getPiece(const ChessPoint& pos) const
 {
 	if (!correctPosition(pos))
 		return nullptr;
 	return _board[pos.x][pos.y];
 }
 
-void ChessBoard::setPiece(Piece* p, ChessPoint new_pos)
+void ChessBoard::setPiece(Piece* p, const ChessPoint& new_pos)
 {
 	Piece* old_pic = getPiece(new_pos);
 	if (old_pic != p)
@@ -66,7 +66,7 @@ void ChessBoard::setPiece(Piece* p, ChessPoint new_pos)
 	}
 }
 
-void ChessBoard::movePiece(ChessPoint current_pos, ChessPoint new_pos) 
+void ChessBoard::movePiece(const ChessPoint& current_pos, const ChessPoint& new_pos)
 {
 	if (!correctPosition(current_pos) || !correctPosition(new_pos))
 		throw std::invalid_argument("Invalid position.");
@@ -96,7 +96,7 @@ bool ChessBoard::checkForCheck(bool is_white_check) const
 	return false;
 }
 
-bool ChessBoard::isCheckMove(ChessPoint src_pos, ChessPoint dest_pos)
+bool ChessBoard::isCheckMove(const ChessPoint& src_pos, const ChessPoint& dest_pos)
 {
 	Piece* src_piece = getPiece(src_pos);
 	Piece* dest_piece = getPiece(dest_pos);

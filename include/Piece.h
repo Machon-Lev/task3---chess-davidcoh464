@@ -62,7 +62,7 @@ public:
      *
      * @param newPos The new position to set for the piece.
      */
-     void setPosition(ChessPoint newPos);
+     void setPosition(const ChessPoint& newPos);
 
     /**
      * @brief Calculates all legal moves for the piece on the given chess board.

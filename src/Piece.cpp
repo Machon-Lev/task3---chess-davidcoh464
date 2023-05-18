@@ -20,7 +20,7 @@ ChessPoint Piece::getPosition() const
 	return _pos;
 }
 
-void Piece::setPosition(ChessPoint newPos)
+void Piece::setPosition(const ChessPoint& newPos)
 {
 	_pos = newPos;
 }
