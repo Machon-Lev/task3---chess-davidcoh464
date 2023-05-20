@@ -4,15 +4,20 @@ Rook::Rook(ChessPoint _pos, bool _is_white) :Piece('r', _pos, _is_white) {}
 
 std::vector<ChessPoint> Rook::allLegalMoves(const ChessBoard& board) const
 {
-    std::vector<ChessPoint> moves;
-    ChessPoint current_pos = getPosition();
+    return rookMoves(this, board);
+}
 
-    // check moves in horizontal direction
-    // Horizontal rightwards 
+std::vector<ChessPoint> Rook::rookMoves(const Piece* const& _this, const ChessBoard& board)
+{
+    std::vector<ChessPoint> moves;
+    ChessPoint current_pos = _this->getPosition();
+
+    // Check moves in vertical direction
+    // Vertically upwards
     for (int i = current_pos.x + 1; i < 8; ++i)
     {
         ChessPoint new_pos(i, current_pos.y);
-        if (board.isValidMove(new_pos, isWhite()))
+        if (board.isValidMove(new_pos, _this->isWhite()))
         {
             moves.push_back(new_pos);
             if (board.getPiece(new_pos))
@@ -21,11 +26,11 @@ std::vector<ChessPoint> Rook::allLegalMoves(const ChessBoard& board) const
         else
             break; // stop checking this direction if an invalid move is detected
     }
-    // Horizontal leftwards 
+    // Vertically downwards
     for (int i = current_pos.x - 1; i >= 0; --i)
     {
         ChessPoint new_pos(i, current_pos.y);
-        if (board.isValidMove(new_pos, isWhite()))
+        if (board.isValidMove(new_pos, _this->isWhite()))
         {
             moves.push_back(new_pos);
             if (board.getPiece(new_pos))
@@ -35,12 +40,12 @@ std::vector<ChessPoint> Rook::allLegalMoves(const ChessBoard& board) const
             break;
     }
 
-    // check moves in vertical direction
-    // Vertically upwards
+    // Check moves in horizontal direction
+    // Horizontally rightwards 
     for (int j = current_pos.y + 1; j < 8; ++j)
     {
         ChessPoint new_pos(current_pos.x, j);
-        if (board.isValidMove(new_pos, isWhite()))
+        if (board.isValidMove(new_pos, _this->isWhite()))
         {
             moves.push_back(new_pos);
             if (board.getPiece(new_pos))
@@ -49,11 +54,11 @@ std::vector<ChessPoint> Rook::allLegalMoves(const ChessBoard& board) const
         else
             break;
     }
-    // Vertically downwards
+    // Horizontally leftwards 
     for (int j = current_pos.y - 1; j >= 0; --j)
     {
         ChessPoint new_pos(current_pos.x, j);
-        if (board.isValidMove(new_pos, isWhite()))
+        if (board.isValidMove(new_pos, _this->isWhite()))
         {
             moves.push_back(new_pos);
             if (board.getPiece(new_pos))
