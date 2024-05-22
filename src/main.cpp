@@ -1,10 +1,14 @@
 // Chess 
 #include "Chess.h"
+#include "ChessEngine.h"
+#include <chrono>
+#include <thread>
+
 
 int main()
 {
 	string board = "RNBQKBNRPPPPPPPP################################pppppppprnbqkbnr"; 
-//	string board = "##########K###############################R#############r#r#####";
+	//string board = "##########K###############################R#############r#r#####";
 	Chess a(board);
 	int codeResponse = 0;
 	string res = a.getInput();
@@ -27,7 +31,16 @@ int main()
 		/**/ 
 		{ // put your code here instead that code
 			cout << "code response >> ";
-			cin >> codeResponse;
+			try 
+			{
+				codeResponse = (int)ChessEngine::getInstance(board).movePiece(res);
+			}
+			catch (const std::invalid_argument& e)
+			{
+				cout << e.what() << endl;
+				std::this_thread::sleep_for(std::chrono::seconds(5));
+				codeResponse = 21;
+			}
 		}
 		/**/
 
